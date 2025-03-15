@@ -2,6 +2,7 @@ package com.fsociety.studysmart.presentation.dashbord
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,6 +16,7 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Button
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -106,26 +108,29 @@ fun CardSubjectSection(
     subjectList: List<Subject>,
     emptyListText: String = "You don't have any subjects.\n Click the + button to add new subject."
 ){
-    Row (
-        modifier = Modifier.fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween
-    ){
-        Text(
-            text = "SUBJECTS",
-            style = MaterialTheme.typography.bodySmall,
-            modifier = Modifier.padding(start = 12.dp)
-        )
-        IconButton(onClick = {}) {
-            /*Icons(
-                ImageVector = Icons.Default.Add,
-                contentDescription = "Add Subject"
-            )*/
+    Column(modifier = modifier) {
+        Row (
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ){
+            Text(
+                text = "SUBJECTS",
+                style = MaterialTheme.typography.bodySmall,
+                modifier = Modifier.padding(start = 12.dp)
+            )
+            IconButton(onClick = {}) {
+                Icon(
+                    Icons.Default.Add,
+                    contentDescription = "Add Subject"
+                )
+            }
         }
         if (subjectList.isEmpty()) {
             Image(
                 modifier = Modifier
-                    .size(120.dp),
+                    .size(140.dp)
+                    .align(Alignment.CenterHorizontally),
                 painter = painterResource(R.drawable.books),
                 contentDescription = emptyListText
             )
@@ -138,6 +143,7 @@ fun CardSubjectSection(
             )
         }
     }
+
 }
 
 
