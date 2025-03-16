@@ -1,5 +1,6 @@
 package com.fsociety.studysmart.domain.model
 
+import androidx.compose.ui.graphics.Color
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.fsociety.studysmart.presentation.dashbord.theme.gradient1
@@ -12,7 +13,7 @@ import com.fsociety.studysmart.presentation.dashbord.theme.gradient5
 data class Subject(
     val name: String,
     val goalHours: Float,
-    val colors: List<Int>,
+    val colors: List<Color>,
     @PrimaryKey(autoGenerate = true)
     val subjectId: Int? = null
 ) {

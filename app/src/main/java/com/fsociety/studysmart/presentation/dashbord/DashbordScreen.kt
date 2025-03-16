@@ -3,6 +3,7 @@ package com.fsociety.studysmart.presentation.dashbord
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -11,6 +12,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Button
@@ -31,10 +34,23 @@ import androidx.compose.ui.unit.dp
 import com.fsociety.studysmart.R
 import com.fsociety.studysmart.domain.model.Subject
 import com.fsociety.studysmart.presentation.dashbord.component.CardCount
+import com.fsociety.studysmart.presentation.dashbord.component.CardSubject
+import com.fsociety.studysmart.presentation.dashbord.component.listTask
 
 
 @Composable
 fun DashbordScreen(){
+
+    val subjects = listOf(
+        Subject(name = "English", goalHours = 10f, colors = Subject.subjectCardColors[0]),
+        Subject(name = "Math", goalHours = 10f, colors = Subject.subjectCardColors[1]),
+        Subject(name = "Physic", goalHours = 10f, colors = Subject.subjectCardColors[2]),
+        Subject(name = "Arab", goalHours = 10f, colors = Subject.subjectCardColors[3]),
+        Subject(name = "Info", goalHours = 10f, colors = Subject.subjectCardColors[4]),
+    )
+
+
+
     Scaffold(
         topBar = {DashbordScreenTopBar()}
     ) { paddingValues ->
@@ -54,9 +70,25 @@ fun DashbordScreen(){
             item {
                 CardSubjectSection(
                     modifier = Modifier.fillMaxWidth(),
-                    subjectList = emptyList(),
+                    subjectList = subjects
                 )
             }
+            item {
+                Button(
+                    onClick = {},
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 48.dp, vertical = 20.dp)
+                ) {
+                    Text(text = "Start Study Session")
+                }
+            }
+            listTask(
+                sectionTitle = "UPCOMING TASK",
+                emptyListTask = "You don't have any upcoming task.\n" +
+                        "Click the + button in subject screen to add new task.",
+                tasks = emptyList()
+            )
         }
     }
 }
@@ -104,7 +136,7 @@ private fun CardCountSection(
 
 @Composable
 fun CardSubjectSection(
-    modifier: Modifier,
+    modifier: Modifier ,
     subjectList: List<Subject>,
     emptyListText: String = "You don't have any subjects.\n Click the + button to add new subject."
 ){
@@ -141,6 +173,20 @@ fun CardSubjectSection(
                 color = Color.Gray,
                 textAlign = TextAlign.Center
             )
+        }
+        LazyRow (
+            horizontalArrangement = Arrangement.spacedBy(12.dp),
+            contentPadding = PaddingValues(start = 12.dp, end = 12.dp)
+        ){
+            items(subjectList){subject ->
+                CardSubject(
+                    modifier = modifier,
+                    subjectName = subject.name,
+                    gradientColor = subject.colors,
+                    onClick = {}
+                )
+
+            }
         }
     }
 
