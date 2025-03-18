@@ -9,7 +9,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyListScope
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -58,14 +60,25 @@ fun LazyListScope.listTask(
             }
         }
     }
+    items(tasks) { task ->
+        CardTask(
+            modifier = Modifier
+                .padding(horizontal = 12.dp, vertical = 4.dp),
+            task = task,
+            onCheckBoxClick = TODO(),
+            onClick = {}
+        )
+    }
 }
 @Composable
 fun CardTask(
     modifier: Modifier,
-    task:Task
+    task:Task,
+    onCheckBoxClick: ()->Unit,
+    onClick: ()->Unit
 ){
     ElevatedCard (
-        modifier = modifier.clickable {  }
+        modifier = modifier.clickable { onClick() }
     ){
         Row(
             modifier = Modifier
@@ -73,6 +86,12 @@ fun CardTask(
                 .padding(8.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
+            CheckBoxTask(
+                isComplete =task.isComplete,
+                borderColor = Color.Black,
+                onCheckBoxClick = onCheckBoxClick
+            )
+            Spacer(modifier.width(10.dp))
             Column (){
                 Text(
                     text = task.title,

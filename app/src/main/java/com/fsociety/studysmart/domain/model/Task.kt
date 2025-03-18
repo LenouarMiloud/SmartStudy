@@ -6,5 +6,5 @@ data class Task(
     val dueData: Long,
     val priority: Int,
     val relatedToSubject: String,
-    val isComplete: String
+    val isComplete: Boolean
 )

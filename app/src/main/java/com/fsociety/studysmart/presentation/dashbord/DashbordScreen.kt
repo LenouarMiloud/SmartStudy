@@ -33,6 +33,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.fsociety.studysmart.R
 import com.fsociety.studysmart.domain.model.Subject
+import com.fsociety.studysmart.domain.model.Task
 import com.fsociety.studysmart.presentation.dashbord.component.CardCount
 import com.fsociety.studysmart.presentation.dashbord.component.CardSubject
 import com.fsociety.studysmart.presentation.dashbord.component.listTask
@@ -49,6 +50,34 @@ fun DashbordScreen(){
         Subject(name = "Info", goalHours = 10f, colors = Subject.subjectCardColors[4]),
     )
 
+    val tasks = listOf(
+        Task(
+            title = "Prepare Notes",
+            description = "",
+            dueData = 0L,
+            priority = 1,
+            relatedToSubject = "",
+            isComplete = false
+        ),
+        Task(
+            title = "do Homework",
+            description = "",
+            dueData = 0L,
+            priority = 1,
+            relatedToSubject = "",
+            isComplete = true
+        ),
+        Task(
+            title = "Go Coatching",
+            description = "",
+            dueData = 0L,
+            priority = 1,
+            relatedToSubject = "",
+            isComplete = false
+        )
+
+
+    )
 
 
     Scaffold(
@@ -87,7 +116,7 @@ fun DashbordScreen(){
                 sectionTitle = "UPCOMING TASK",
                 emptyListTask = "You don't have any upcoming task.\n" +
                         "Click the + button in subject screen to add new task.",
-                tasks = emptyList()
+                tasks = tasks
             )
         }
     }
