@@ -43,11 +43,11 @@ import com.fsociety.studysmart.presentation.dashbord.component.listTask
 fun DashbordScreen(){
 
     val subjects = listOf(
-        Subject(name = "English", goalHours = 10f, colors = Subject.subjectCardColors[0]),
-        Subject(name = "Math", goalHours = 10f, colors = Subject.subjectCardColors[1]),
-        Subject(name = "Physic", goalHours = 10f, colors = Subject.subjectCardColors[2]),
-        Subject(name = "Arab", goalHours = 10f, colors = Subject.subjectCardColors[3]),
-        Subject(name = "Info", goalHours = 10f, colors = Subject.subjectCardColors[4]),
+        Subject(name = "English", goalHours = 10f, colors = Subject.subjectCardColors[0], subjectId = 0),
+        Subject(name = "Math", goalHours = 10f, colors = Subject.subjectCardColors[1], subjectId = 0),
+        Subject(name = "Physic", goalHours = 10f, colors = Subject.subjectCardColors[2], subjectId = 0),
+        Subject(name = "Arab", goalHours = 10f, colors = Subject.subjectCardColors[3], subjectId = 0),
+        Subject(name = "Info", goalHours = 10f, colors = Subject.subjectCardColors[4], subjectId = 0),
     )
 
     val tasks = listOf(
@@ -57,23 +57,29 @@ fun DashbordScreen(){
             dueData = 0L,
             priority = 1,
             relatedToSubject = "",
-            isComplete = false
+            isComplete = false,
+            taskSubjectId = 0,
+            taskId = 1
         ),
         Task(
             title = "do Homework",
             description = "",
             dueData = 0L,
-            priority = 1,
+            priority = 0,
             relatedToSubject = "",
-            isComplete = true
+            isComplete = true,
+            taskSubjectId = 0,
+            taskId = 1
         ),
         Task(
             title = "Go Coatching",
             description = "",
             dueData = 0L,
-            priority = 1,
+            priority = 2,
             relatedToSubject = "",
-            isComplete = false
+            isComplete = false,
+            taskSubjectId = 0,
+            taskId = 1
         )
 
 
@@ -116,7 +122,9 @@ fun DashbordScreen(){
                 sectionTitle = "UPCOMING TASK",
                 emptyListTask = "You don't have any upcoming task.\n" +
                         "Click the + button in subject screen to add new task.",
-                tasks = tasks
+                tasks = tasks,
+                onCheckBoxClick = {},
+                onCardTaskClick = {}
             )
         }
     }

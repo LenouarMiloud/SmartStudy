@@ -30,13 +30,13 @@ fun CheckBoxTask(
             .clickable { onCheckBoxClick() },
         contentAlignment = Alignment.Center
     ){
-        /*AnimatedVisibility(visible = isComplete) {
-            /*Icon(
+        AnimatedVisibility(visible = isComplete) {
+            Icon(
                 modifier = Modifier.size(20.dp),
                 imageVector = Icons.Rounded.Check,
                 contentDescription = null
-            )*/
-        }*/
+            )
+        }
     }
 }
 
