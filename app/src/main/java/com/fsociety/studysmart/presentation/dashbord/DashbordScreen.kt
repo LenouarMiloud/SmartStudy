@@ -37,6 +37,7 @@ import com.fsociety.studysmart.domain.model.Task
 import com.fsociety.studysmart.presentation.dashbord.component.CardCount
 import com.fsociety.studysmart.presentation.dashbord.component.CardSubject
 import com.fsociety.studysmart.presentation.dashbord.component.listTask
+import com.fsociety.studysmart.presentation.dashbord.component.sessionStudylist
 
 
 @Composable
@@ -80,9 +81,37 @@ fun DashbordScreen(){
             isComplete = false,
             taskSubjectId = 0,
             taskId = 1
+        ),
+        Task(
+            title = "Sport",
+            description = "",
+            dueData = 0L,
+            priority = 0,
+            relatedToSubject = "",
+            isComplete = true,
+            taskSubjectId = 0,
+            taskId = 1
+        ),
+        Task(
+            title = "programming",
+            description = "",
+            dueData = 0L,
+            priority = 0,
+            relatedToSubject = "",
+            isComplete = true,
+            taskSubjectId = 0,
+            taskId = 1
+        ),
+        Task(
+            title = "game",
+            description = "",
+            dueData = 0L,
+            priority = 0,
+            relatedToSubject = "",
+            isComplete = true,
+            taskSubjectId = 0,
+            taskId = 1
         )
-
-
     )
 
 
@@ -125,6 +154,11 @@ fun DashbordScreen(){
                 tasks = tasks,
                 onCheckBoxClick = {},
                 onCardTaskClick = {}
+            )
+            sessionStudylist(
+                sectionTitle = "UPCOMMING ",
+                emptyListTask = TODO(),
+                sessions = TODO()
             )
         }
     }
