@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -155,10 +156,14 @@ fun DashbordScreen(){
                 onCheckBoxClick = {},
                 onCardTaskClick = {}
             )
+            item {
+                Spacer(modifier = Modifier.height(20.dp))
+            }
             sessionStudylist(
-                sectionTitle = "UPCOMMING ",
-                emptyListTask = TODO(),
-                sessions = TODO()
+                sectionTitle = "RECENT STUDY SESSIONS ",
+                emptyListTask = "You don't have any recent study sessions.\n" +
+                        "Start a study session to begin recording your progress.",
+                sessions = emptyList(),
             )
         }
     }

@@ -33,7 +33,7 @@ import com.fsociety.studysmart.util.Priority
 fun LazyListScope.sessionStudylist(
     sectionTitle: String,
     emptyListTask: String,
-    sessions: List<Session>
+    sessions: List<Session>,
 ){
     item {
         Text(
@@ -68,7 +68,7 @@ fun LazyListScope.sessionStudylist(
     }
 }
 @Composable
-fun CardTask(
+private fun CardTask(
     modifier: Modifier,
     task: Task,
     onCheckBoxClick: ()->Unit,

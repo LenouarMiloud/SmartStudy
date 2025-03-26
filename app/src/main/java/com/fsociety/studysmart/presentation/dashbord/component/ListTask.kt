@@ -73,7 +73,7 @@ fun LazyListScope.listTask(
     }
 }
 @Composable
-fun CardTask(
+private fun CardTask(
     modifier: Modifier,
     task:Task,
     onCheckBoxClick: ()->Unit,
