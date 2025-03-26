@@ -33,6 +33,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.fsociety.studysmart.R
+import com.fsociety.studysmart.domain.model.Session
 import com.fsociety.studysmart.domain.model.Subject
 import com.fsociety.studysmart.domain.model.Task
 import com.fsociety.studysmart.presentation.dashbord.component.CardCount
@@ -115,6 +116,31 @@ fun DashbordScreen(){
         )
     )
 
+    val sessions= listOf(
+        Session(
+            sessionSubjectId = 0,
+            relatedToSubject = "ARABIC",
+            date = 0L,
+            duration = 4,
+            sessionId = 0
+        ),
+        Session(
+            sessionSubjectId = 0,
+            relatedToSubject = "Computer Science",
+            date = 0L,
+            duration = 4,
+            sessionId = 0
+        ),
+        Session(
+            sessionSubjectId = 0,
+            relatedToSubject = "MATH",
+            date = 0L,
+            duration = 4,
+            sessionId = 0
+        )
+
+    )
+
 
     Scaffold(
         topBar = {DashbordScreenTopBar()}
@@ -163,7 +189,8 @@ fun DashbordScreen(){
                 sectionTitle = "RECENT STUDY SESSIONS ",
                 emptyListTask = "You don't have any recent study sessions.\n" +
                         "Start a study session to begin recording your progress.",
-                sessions = emptyList(),
+                sessions = sessions,
+                onDeleteIconClick = {}
             )
         }
     }
