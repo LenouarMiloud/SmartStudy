@@ -44,6 +44,7 @@ import com.fsociety.studysmart.domain.model.Task
 import com.fsociety.studysmart.presentation.dashbord.component.AddSubjectDialog
 import com.fsociety.studysmart.presentation.dashbord.component.CardCount
 import com.fsociety.studysmart.presentation.dashbord.component.CardSubject
+import com.fsociety.studysmart.presentation.dashbord.component.DeleteDialog
 import com.fsociety.studysmart.presentation.dashbord.component.listTask
 import com.fsociety.studysmart.presentation.dashbord.component.sessionStudylist
 
@@ -148,6 +149,7 @@ fun DashbordScreen(){
     )
 
     var isAddSubjectDialogOpen by rememberSaveable { mutableStateOf(false) }
+    var isDeleteSessionDialogOpen by rememberSaveable { mutableStateOf(false) }
     var subjectName by remember { mutableStateOf("") }
     var goalHour by remember { mutableStateOf("") }
     var selectedColor by remember { mutableStateOf(Subject.subjectCardColors.random()) }
@@ -164,6 +166,14 @@ fun DashbordScreen(){
         onConfirmButtonClick = {
             isAddSubjectDialogOpen = false
         }
+    )
+    DeleteDialog(
+        isOpen = isDeleteSessionDialogOpen,
+        title = "Delete Session",
+        bodyText = "Are you sure , you want to delete this session?, Your studies hours will be reduced" +
+                "by this session time. this action can not be undone.",
+        onDismissRequest = {isDeleteSessionDialogOpen = false},
+        onConfirmButtonClick = {isDeleteSessionDialogOpen = false}
     )
 
 
@@ -220,7 +230,7 @@ fun DashbordScreen(){
                 emptyListTask = "You don't have any recent study sessions.\n" +
                         "Start a study session to begin recording your progress.",
                 sessions = sessions,
-                onDeleteIconClick = {}
+                onDeleteIconClick = {isDeleteSessionDialogOpen = true}
             )
         }
     }
