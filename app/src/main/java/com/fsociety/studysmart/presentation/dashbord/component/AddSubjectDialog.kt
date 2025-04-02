@@ -7,23 +7,29 @@ import androidx.compose.runtime.Composable
 
 @Composable
 fun AddSubjectDialog(
+    isOpen: Boolean,
     title: String = "Add/Update Subject",
     onDismissRequest: ()->Unit,
     onConfirmButtonClick: ()->Unit
 ){
-    AlertDialog(
-        onDismissRequest = onDismissRequest,
-        title = { Text(text = title) },
-        text = {},
-        dismissButton = {
-            TextButton(onClick = onDismissRequest) {
-                Text(text = "Dismiss")
+    if(isOpen){
+        AlertDialog(
+            onDismissRequest = onDismissRequest,
+            title = { Text(text = title) },
+            text = {
+                Text(text = "Dialog Body")
+            },
+            dismissButton = {
+                TextButton(onClick = onDismissRequest) {
+                    Text(text = "Dismiss")
+                }
+            },
+            confirmButton = {
+                TextButton(onClick = onConfirmButtonClick) {
+                    Text(text = "Save")
+                }
             }
-        },
-        confirmButton = {
-            TextButton(onClick = onConfirmButtonClick) {
-                Text(text = "Save")
-            }
-        }
-    )
+        )
+    }
+
 }
