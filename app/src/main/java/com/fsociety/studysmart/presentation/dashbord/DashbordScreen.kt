@@ -28,6 +28,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -147,10 +148,19 @@ fun DashbordScreen(){
     )
 
     var isAddSubjectDialogOpen by rememberSaveable { mutableStateOf(false) }
+    var subjectName by remember { mutableStateOf("") }
+    var goalHour by remember { mutableStateOf("") }
+    var selectedColor by remember { mutableStateOf(Subject.subjectCardColors.random()) }
 
     AddSubjectDialog(
         isOpen = isAddSubjectDialogOpen,
-        onDismissRequest = {isAddSubjectDialogOpen = false},
+        subjectName = subjectName,
+        goalHours = goalHour,
+        onSubjectNameChange = { subjectName = it },
+        onGoalHourChange = {goalHour = it },
+        selectedColor = selectedColor,
+        onColorChange = { selectedColor = it },
+        onDismissRequest = { isAddSubjectDialogOpen = false },
         onConfirmButtonClick = {
             isAddSubjectDialogOpen = false
         }
@@ -167,7 +177,9 @@ fun DashbordScreen(){
         ) {
             item {
                 CardCountSection(
-                    modifier = Modifier.fillMaxWidth().padding(12.dp),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(12.dp),
                     subjectCount = 5,
                     studiedHours = "10",
                     goalHours = "15",
