@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import com.fsociety.studysmart.presentation.dashbord.DashbordScreen
 import com.fsociety.studysmart.presentation.dashbord.theme.StudySmartTheme
+import com.fsociety.studysmart.presentation.subject.ScreenSubject
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -13,7 +14,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             StudySmartTheme {
-                DashbordScreen()
+                //DashbordScreen()
+                ScreenSubject()
             }
         }
     }
