@@ -24,6 +24,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.StrokeCap
@@ -49,7 +50,16 @@ fun ScreenSubject() {
                 .fillMaxSize()
                 .padding(paddingValue)
         ){
-
+            item {
+                SubjectOverviewSection(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(12.dp),
+                    studiesHours = "10",
+                    goalHours = "15",
+                    progress = 0.75f
+                )
+            }
         }
     }
 }
@@ -95,21 +105,31 @@ private fun ScreenSubjectTopBar(
     )
 }
 @Composable
-private fun SubjectOverviewSection(){
+private fun SubjectOverviewSection(
+    modifier: Modifier,
+    studiesHours: String,
+    goalHours: String,
+    progress: Float
+){
+    val progressPercentage = remember (progress){
+        (progress * 100).toInt().coerceIn(0,100)
+    }
+
     Row (
+        modifier= modifier,
         horizontalArrangement = Arrangement.SpaceAround,
         verticalAlignment = Alignment.CenterVertically
     ){
         CardCount(
             modifier = Modifier.weight(1f),
             headingText = "Goal Study Hours",
-            count = "5"
+            count = goalHours
         )
         Spacer(modifier = Modifier.width(10.dp))
         CardCount(
             modifier = Modifier.weight(1f),
             headingText = "Study Hours",
-            count = "5"
+            count = studiesHours
         )
         Spacer(modifier = Modifier.width(10.dp))
         Box(
@@ -118,19 +138,19 @@ private fun SubjectOverviewSection(){
         ){
             CircularProgressIndicator(
                 modifier = Modifier.fillMaxSize(),
-                progress = 1f,
+                progress = progress,
                 strokeWidth = 4.dp,
                 strokeCap = StrokeCap.Round,
                 color = MaterialTheme.colorScheme.surfaceVariant
             )
             CircularProgressIndicator(
                 modifier = Modifier.fillMaxSize(),
-                progress = 1f,
+                progress = progress,
                 strokeWidth = 4.dp,
                 strokeCap = StrokeCap.Round,
                 color = MaterialTheme.colorScheme.surfaceVariant
             )
-            Text(text="")
+            Text(text="$progressPercentage%")
         }
     }
 }
