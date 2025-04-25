@@ -27,6 +27,8 @@ import androidx.compose.material3.LargeTopAppBar
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
@@ -34,6 +36,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.fsociety.studysmart.presentation.dashbord.component.CardCount
@@ -42,19 +45,23 @@ import com.fsociety.studysmart.presentation.dashbord.component.sessionStudylist
 import com.fsociety.studysmart.sessions
 import com.fsociety.studysmart.tasks
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ScreenSubject() {
 
     val listState = rememberLazyListState()
     val isFABExpanded by remember {derivedStateOf { listState.firstVisibleItemIndex == 0 }}
+    val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
 
     Scaffold (
+        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             ScreenSubjectTopBar(
                 title = "Computer Science",
                 onBackButtonClick = {},
                 onDeleteButtonClick = {},
-                onEditButtonClick = {}
+                onEditButtonClick = {},
+                scrollBehavior = scrollBehavior
             )
         },
         floatingActionButton = {
@@ -123,8 +130,10 @@ private fun ScreenSubjectTopBar(
     onBackButtonClick: ()-> Unit,
     onDeleteButtonClick: ()-> Unit,
     onEditButtonClick: ()-> Unit,
+    scrollBehavior: TopAppBarScrollBehavior
 ){
     LargeTopAppBar(
+        scrollBehavior = scrollBehavior,
         navigationIcon = {
             IconButton(onClick = onBackButtonClick) {
                 Icon(
