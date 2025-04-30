@@ -3,11 +3,11 @@ package com.fsociety.studysmart.domain.model
 import androidx.compose.ui.graphics.Color
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.fsociety.studysmart.presentation.dashbord.theme.gradient1
-import com.fsociety.studysmart.presentation.dashbord.theme.gradient2
-import com.fsociety.studysmart.presentation.dashbord.theme.gradient3
-import com.fsociety.studysmart.presentation.dashbord.theme.gradient4
-import com.fsociety.studysmart.presentation.dashbord.theme.gradient5
+import com.fsociety.studysmart.presentation.theme.gradient1
+import com.fsociety.studysmart.presentation.theme.gradient2
+import com.fsociety.studysmart.presentation.theme.gradient3
+import com.fsociety.studysmart.presentation.theme.gradient4
+import com.fsociety.studysmart.presentation.theme.gradient5
 
 @Entity
 data class Subject(

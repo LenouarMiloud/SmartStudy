@@ -1,4 +1,4 @@
-package com.fsociety.studysmart.presentation.dashbord.component
+package com.fsociety.studysmart.presentation.component
 
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Text

@@ -1,7 +1,6 @@
 package com.fsociety.studysmart.presentation.subject
 
 
-import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -32,16 +31,22 @@ import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.fsociety.studysmart.presentation.dashbord.component.CardCount
-import com.fsociety.studysmart.presentation.dashbord.component.listTask
-import com.fsociety.studysmart.presentation.dashbord.component.sessionStudylist
+import com.fsociety.studysmart.domain.model.Subject
+import com.fsociety.studysmart.presentation.component.AddSubjectDialog
+import com.fsociety.studysmart.presentation.component.CardCount
+import com.fsociety.studysmart.presentation.component.DeleteDialog
+import com.fsociety.studysmart.presentation.component.listTask
+import com.fsociety.studysmart.presentation.component.sessionStudylist
 import com.fsociety.studysmart.sessions
 import com.fsociety.studysmart.tasks
 
@@ -53,14 +58,51 @@ fun ScreenSubject() {
     val isFABExpanded by remember {derivedStateOf { listState.firstVisibleItemIndex == 0 }}
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
 
+    var isEditSubjectDialogOpen by rememberSaveable { mutableStateOf(false) }
+    var isDeleteSessionDialogOpen by rememberSaveable { mutableStateOf(false) }
+    var isDeleteSubjectDialogOpen by rememberSaveable { mutableStateOf(false) }
+    var subjectName by remember { mutableStateOf("") }
+    var goalHour by remember { mutableStateOf("") }
+    var selectedColor by remember { mutableStateOf(Subject.subjectCardColors.random()) }
+
+    AddSubjectDialog(
+        isOpen = isEditSubjectDialogOpen,
+        subjectName = subjectName,
+        goalHours = goalHour,
+        onSubjectNameChange = { subjectName = it },
+        onGoalHourChange = {goalHour = it },
+        selectedColor = selectedColor,
+        onColorChange = { selectedColor = it },
+        onDismissRequest = { isEditSubjectDialogOpen = false },
+        onConfirmButtonClick = {
+            isEditSubjectDialogOpen = false
+        }
+    )
+    DeleteDialog(
+        isOpen = isDeleteSessionDialogOpen,
+        title = "Delete Session",
+        bodyText = "Are you sure , you want to delete this session?, Your studies hours will be reduced" +
+                "by this session time. this action can not be undone.",
+        onDismissRequest = {isDeleteSessionDialogOpen = false},
+        onConfirmButtonClick = {isDeleteSessionDialogOpen = false}
+    )
+    DeleteDialog(
+        isOpen = isDeleteSubjectDialogOpen,
+        title = "Delete Subject",
+        bodyText = "Are you sure , you want to delete this subject?, All related tasks and ." +
+                "study session will be permanetly removed. Tis action can not be undone",
+        onDismissRequest = {isDeleteSubjectDialogOpen = false},
+        onConfirmButtonClick = {isDeleteSubjectDialogOpen = false}
+    )
+
     Scaffold (
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             ScreenSubjectTopBar(
                 title = "Computer Science",
                 onBackButtonClick = {},
-                onDeleteButtonClick = {},
-                onEditButtonClick = {},
+                onDeleteButtonClick = {isDeleteSessionDialogOpen = true},
+                onEditButtonClick = {isEditSubjectDialogOpen=true},
                 scrollBehavior = scrollBehavior
             )
         },
@@ -116,7 +158,7 @@ fun ScreenSubject() {
                 emptyListTask = "You don't have any recent study sessions.\n" +
                         "Start a study session to begin recording your progress.",
                 sessions = sessions,
-                onDeleteIconClick = {}
+                onDeleteIconClick = {isDeleteSessionDialogOpen = true}
             )
         }
     }

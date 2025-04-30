@@ -1,4 +1,4 @@
-package com.fsociety.studysmart.presentation.dashbord.component
+package com.fsociety.studysmart.presentation.component
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.border

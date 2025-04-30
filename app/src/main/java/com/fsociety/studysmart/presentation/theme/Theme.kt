@@ -1,4 +1,4 @@
-package com.fsociety.studysmart.presentation.dashbord.theme
+package com.fsociety.studysmart.presentation.theme
 
 import android.app.Activity
 import android.os.Build

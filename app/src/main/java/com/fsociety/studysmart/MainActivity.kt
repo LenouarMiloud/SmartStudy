@@ -8,7 +8,7 @@ import com.fsociety.studysmart.domain.model.Session
 import com.fsociety.studysmart.domain.model.Subject
 import com.fsociety.studysmart.domain.model.Task
 import com.fsociety.studysmart.presentation.dashbord.DashbordScreen
-import com.fsociety.studysmart.presentation.dashbord.theme.StudySmartTheme
+import com.fsociety.studysmart.presentation.theme.StudySmartTheme
 import com.fsociety.studysmart.presentation.subject.ScreenSubject
 
 class MainActivity : ComponentActivity() {

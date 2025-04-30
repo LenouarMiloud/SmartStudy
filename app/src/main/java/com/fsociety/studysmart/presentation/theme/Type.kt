@@ -1,4 +1,4 @@
-package com.fsociety.studysmart.presentation.dashbord.theme
+package com.fsociety.studysmart.presentation.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

@@ -1,9 +1,9 @@
 package com.fsociety.studysmart.util
 
 import androidx.compose.ui.graphics.Color
-import com.fsociety.studysmart.presentation.dashbord.theme.Green
-import com.fsociety.studysmart.presentation.dashbord.theme.Orange
-import com.fsociety.studysmart.presentation.dashbord.theme.Red
+import com.fsociety.studysmart.presentation.theme.Green
+import com.fsociety.studysmart.presentation.theme.Orange
+import com.fsociety.studysmart.presentation.theme.Red
 
 enum class Priority(val title: String, val color: Color, var value: Int){
     LOW(title = "Low", color = Green, value = 0),

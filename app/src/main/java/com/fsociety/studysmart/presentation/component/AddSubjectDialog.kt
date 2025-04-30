@@ -1,4 +1,4 @@
-package com.fsociety.studysmart.presentation.dashbord.component
+package com.fsociety.studysmart.presentation.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
