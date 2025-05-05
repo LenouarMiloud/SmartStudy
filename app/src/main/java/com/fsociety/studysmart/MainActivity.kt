@@ -10,6 +10,7 @@ import com.fsociety.studysmart.domain.model.Task
 import com.fsociety.studysmart.presentation.dashbord.DashbordScreen
 import com.fsociety.studysmart.presentation.theme.StudySmartTheme
 import com.fsociety.studysmart.presentation.subject.ScreenSubject
+import com.fsociety.studysmart.presentation.task.TaskScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,7 +19,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             StudySmartTheme {
                 //DashbordScreen()
-                ScreenSubject()
+                //ScreenSubject()
+                TaskScreen()
             }
         }
     }
